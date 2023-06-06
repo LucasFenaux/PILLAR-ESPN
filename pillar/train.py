@@ -1,3 +1,6 @@
+"""Originally from https://github.com/pytorch/vision/blob/main/references/classification/
+Modified and adapted for our purposes"""
+
 import datetime
 import os
 import time

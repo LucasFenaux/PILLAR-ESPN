@@ -1,3 +1,5 @@
+"""Originally from https://github.com/pytorch/vision/blob/main/references/classification/
+Modified and adapted for our purposes"""
 import torch
 from torchvision.transforms import autoaugment, transforms
 from torchvision.transforms.functional import InterpolationMode
