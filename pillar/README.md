@@ -18,12 +18,11 @@ notebook directly.
 ## Reproducing the paper results
 
 To reproduce the accuracy results from the paper, we provided training scripts that train the models and then the 
-associated testing scripts to extract the results.
+associated testing scripts to extract the results. The trained models presented in the paper are available upon request.
 We have 3 datasets: CIFAR10, CIFAR100 and ImageNet. For ImageNet, make sure it is already downloaded and at the location
 that <code>dataset_path</code> point to in the bash scripts (feel free to change that for your own purposes).
 
-### Training PolyReLU models
-#### CIFAR10
+### CIFAR10
 
 To train our polynomial approximated relu models on CIFAR10, you can run:
 
@@ -64,7 +63,7 @@ bash cifar10_polyrelu_runs.sh "${gpu}" "${model}"  # for the PolyReLU model
 bash cifar10_relu_runs.sh "${gpu}" "${model}"  # for the ReLU model
 ```
 
-#### CIFAR100
+### CIFAR100
 
 To train our polynomial approximated relu models on CIFAR100, you can run:
 
@@ -106,7 +105,7 @@ bash cifar100_relu_runs.sh "${gpu}" "${model}"  # for the ReLU model
 ```
 
 
-#### ImageNet
+### ImageNet
 
 For ImageNet, the script is a little different as we only trained one model due to the time it takes to train said model.
 We trained our model using 32 CPU cores @3.7GHz and 1TB of RAM with four NVIDIA A100 with 80GB of memory. To get results
