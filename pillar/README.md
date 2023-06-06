@@ -12,6 +12,9 @@ bash figure_k.sh
 
 Then run the cells in the associated python notebook <code>figure_k.ipynb</code>.
 
+Note: figure 11 does not have a bash script associated with it as it does not need one. Just run the cells in the 
+notebook directly.
+
 ## Reproducing the paper results
 
 To reproduce the accuracy results from the paper, we provided training scripts that train the models and then the 
