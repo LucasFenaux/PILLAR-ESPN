@@ -226,7 +226,7 @@ def quantized_poly_fit(xs, ys, degree, crypto_precision=8):
 
 
 class PolynomialEvaluator(nn.Module):
-    def __init__(self, coeffs, EPS=1e-9):#, quant: bool = False):
+    def __init__(self, coeffs, EPS=1e-9):
         super(PolynomialEvaluator, self).__init__()
         self.len_coeffs = len(coeffs)
         self.coeffs = coeffs
@@ -263,9 +263,9 @@ class PolyRelu(nn.Module):
     ids = []
     ordered_buffer = {}
     def __init__(self, coeffs, range=5., reg_range=5., alpha=0, clip: bool = False, regularize: bool = False,
-                 monitor: bool = False):#, quant: bool = False):
+                 monitor: bool = False):
         super().__init__()
-        self.evaluator = PolynomialEvaluator(coeffs)#, quant=quant) # uncomment if using quantization
+        self.evaluator = PolynomialEvaluator(coeffs)
         self.clip = clip
         self.range = range
         self.reg_range = reg_range

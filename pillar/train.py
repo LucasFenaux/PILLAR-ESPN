@@ -162,7 +162,6 @@ def evaluate(model, criterion, data_loader, device, args, print_freq=100, log_su
             loss = criterion(output, target)
             if args.use_poly and args.regularize: #and not args.quantize:
                 loss += get_penalty(args.penalty_exp, args.reg_coef, args.reg_range)
-            # loss = criterion(output, target)
             acc1, acc5 = utils.accuracy(output, target, topk=(1, 5))
             # FIXME need to take into account that the datasets
             # could have been padded in distributed setup
@@ -229,10 +228,7 @@ def load_cifar_data(args):
                                     transform=torchvision.transforms.Compose(transform_list), train=True, download=True)
     else:
         raise NotImplementedError
-        # if args.cache_dataset:
-        #     print(f"Saving dataset_train to {cache_path}")
-        #     utils.mkdir(os.path.dirname(cache_path))
-        #     utils.save_on_master((dataset, traindir), cache_path)
+
     print("Took", time.time() - st)
 
     print("Loading validation data")

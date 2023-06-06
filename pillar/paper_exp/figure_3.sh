@@ -1,8 +1,5 @@
 #!/bin/bash
 
-
-# trains a series of poly_relu convnets with varying polynomial degrees
-
 cd ..
 
 degrees=("2" "3" "4" "5" "6" "7" "8" "9" "10")
@@ -15,7 +12,6 @@ do
   python train.py --model convnet --batch-size 256 --lr 0.01 --lr-scheduler cosineannealinglr --lr-warmup-epochs 5 --lr-warmup-method linear --no-coef-quant --epochs 150 --weight-decay 0.0001 --data-path ./data/ --output-dir "./experiments/figure_1/line_1/convnet_pr_degree_${degree}_${model_num}" --use-poly --range 5.0 --degree "${degree}" --dataset cifar10 --seed ${model_num}
   done
 done
-
 
 degrees=("2" "3" "4" "5" "6" "7" "8" "9" "10")
 reg_coefs=("0.1" "0.01" "0.001" "0.0001" "0.00001" "0.000001" "0.0000001" "0.00000001")

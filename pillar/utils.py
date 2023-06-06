@@ -41,7 +41,6 @@ class AverageMeter:
         return self.sum / self.count
 
 
-
 class Timer(object):
     def __init__(self, description):
         self.description = description
