@@ -18,7 +18,7 @@ For running the timing experiments, you don't need any model files, we just inst
 export PYTHONPATH=$PWD
 python scripts/timing_experiments.py
 ```
-You can edit the parameters at the top of [timing_experiments.py](https://github.com/D-Diaa/CrypTen-ESPN/blob/main/scripts/timing_experiments.py) to select different models, datasets, batch sizes, number of repeats per experiment and simulated delays.
+You can edit the parameters at the top of timing_experiments.py to select different models, datasets, batch sizes, number of repeats per experiment and simulated delays.
 ```python
 batch_size = 1
 repeats = 20
@@ -45,7 +45,7 @@ Similary, you can run all the accuracy experiments:
 export PYTHONPATH=$PWD
 python scripts/accuracy_experiments.py
 ```
-However, for this you will need to provide a models_folder at the top of [the file](https://github.com/D-Diaa/CrypTen-ESPN/blob/main/scripts/accuracy_experiments.py):
+However, for this you will need to provide a models_folder at the top of accuracy_experiments.py:
 ```python
 models_folder = "/home/paper_models"
 ```
@@ -72,4 +72,4 @@ Where {model} is any of
 ["resnet110", "minionn_bn", "vgg16_avg_bn", "resnet18", "resnet32", "resnet50"]
 ```
 ## Results
-All the results will be in "results" folder, you can use [plots.ipynb](https://github.com/D-Diaa/CrypTen-ESPN/blob/main/notebooks/plots.ipynb) to generate all the timing plots. You can inspect the config_result.yaml to see the accuracy, match-rate and different statistics about communication rounds, bytes, etc.
+All the results will be in "results" folder, you can use plots.ipynb to generate all the timing plots. You can inspect the config_result.yaml to see the accuracy, match-rate and different statistics about communication rounds, bytes, etc.

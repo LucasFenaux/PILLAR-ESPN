@@ -27,7 +27,7 @@ Note that GPU is necessary
 
        conda activate gforce
   
-3. Install [SEAL-Python](https://github.com/D-Diaa/SEAL-Python) by following the instructions in its README.md. 
+3. Install seal_python by following the instructions in its README.md. 
 
     Remember to activate the virtual environment `gforce` (by `conda activate gforce`) before installation.
 
