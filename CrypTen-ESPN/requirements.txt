@@ -1,0 +1,5 @@
+boto3
+pyyaml
+omegaconf
+matplotlib
+visdom>=0.1.8.8
