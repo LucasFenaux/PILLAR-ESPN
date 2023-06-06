@@ -751,7 +751,7 @@ def get_args_parser(add_help=True):
 
     parser = argparse.ArgumentParser(description="PyTorch Classification Training", add_help=add_help)
 
-    parser.add_argument("--data-path", default="/scratch/lprfenau/datasets/imagenet/", type=str, help="dataset path")
+    parser.add_argument("--data-path", type=str, help="dataset path")
     parser.add_argument("--model", default="resnet50", type=str, help="model name")
     parser.add_argument("--device", default="cuda", type=str, help="device (Use cuda or cpu Default: cuda)")
     parser.add_argument(
