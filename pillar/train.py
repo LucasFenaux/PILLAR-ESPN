@@ -12,7 +12,7 @@ import torch.utils.data
 import torchvision
 import transforms
 import utils
-from PolyRelu import PolyRelu, get_penalty, get_metrics, generate_coeffs, real_relu
+from PolyRelu import PolyRelu, get_penalty, get_metrics, generate_coeffs, real_relu, real_sigmoid
 from sampler import RASampler
 from torch import nn
 from torch.utils.data.dataloader import default_collate
@@ -430,18 +430,30 @@ def main(args):
 
     print(f'[Network] Total number of parameters : {num_params:.3e}')
     if args.use_poly:
+        if args.sigmoid:
+            function = real_sigmoid
+            filepath = "./sigmoid_poly_coefs"
+        else:
+            function = real_relu
+            filepath = "./poly_coefs"
+
         RANGE = args.range
         CLIP = args.clip
         ALPHA = args.alpha
-        if not os.path.exists("./poly_coefs"):
-            os.mkdir(os.path.join("./poly_coefs"))
-        coeffs = generate_coeffs(real_relu, degree=args.degree, file_prefix="./poly_coefs", rng=args.range,
+
+        if not os.path.exists(filepath):
+            os.mkdir(os.path.join(filepath))
+        coeffs = generate_coeffs(function, degree=args.degree, file_prefix=filepath, rng=args.range,
                                  quantized_coef=not args.no_coef_quant, crypto_precision=args.crypto_precision)
         print(coeffs)
         module = PolyRelu(coeffs, range=RANGE, alpha=ALPHA, regularize=args.regularize) if not args.clip else \
             PolyRelu(coeffs, range=RANGE, clip=CLIP, regularize=args.regularize)
         utils.strip(model, "relu", module, nn.ReLU)
-
+    else:
+        if args.sigmoid:
+            module = torch.nn.Sigmoid()
+            utils.strip(model, "relu", module, nn.ReLU)
+    print(model)
     model.to(device)
     if args.distributed and args.sync_bn:
         model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
@@ -900,6 +912,7 @@ def get_args_parser(add_help=True):
         help="Use regularization ",
         action="store_true",
     )
+    parser.add_argument("--sigmoid", action="store_true")
     parser.add_argument("--dataset", type=str, default="imagenet")
     parser.add_argument("--alpha", default=0., type=float, help="range of polynomial")
     parser.add_argument("--prefetch-factor", dest="prefetch_factor", default=2, type=int,

@@ -159,6 +159,11 @@ def real_relu(x):
     return np.maximum(0, x)
 
 
+def real_sigmoid(x):
+    x_tensor = torch.Tensor(x)
+    return torch.sigmoid(x_tensor).cpu().numpy()
+
+
 def generate_coeffs(activation_func, file_prefix, degree, rng, granularity=1e-2, quantized_coef=1,
                     crypto_precision=8):
     filename = f"{file_prefix}/d{degree}_r{rng}_g{granularity}_q{quantized_coef}_cp{crypto_precision}_coeffs.p"
