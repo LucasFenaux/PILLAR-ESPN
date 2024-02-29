@@ -26,12 +26,12 @@ The instructions for the environment and packages for gforce are in its README.m
 
 ### Implementation Details
 
-We implement PILLAR using GEKKO's mixed integer linear programming solver for the quantization-aware polynomial fitting. We then cache these polynomial coefficients and use them for all models and datasets. 
+We implement PILLAR using [GEKKO](https://gekko.readthedocs.io/en/latest/)'s mixed integer linear programming solver for the quantization-aware polynomial fitting. We then cache these polynomial coefficients and use them for all models and datasets. 
 We train all our models using PyTorch and implement a custom activation function module for the polynomial approximations.
 We call this the PolyReLU layer and use it to replace all ReLU layers. 
 This module takes the cached coefficients and computes the output of the polynomial approximation for forward passes.
 When training, we compute the regularization penalty by taking a snapshot of the inputs passed to the PolyReLU layers and computing our modified loss function.
-After training, we export the model as an ONNX model which can be inputted to CrypTen.
+After training, we export the model as an [ONNX](https://onnxruntime.ai/) model which can be inputted to CrypTen.
 
 We implement the Polynomial Evaluation Protocol for 2-party additive secret-sharing with both ESPN and HoneyBadger in the CrypTen interface.
 We add configuration parameters that allow the user to specify which type of activation function they would like from ReLU or PolyReLU. Similarly, the polynomial evaluation method is parametrized in the config file between ESPN, HoneyBadger, and the default CrypTen Polynomial Evaluation.
