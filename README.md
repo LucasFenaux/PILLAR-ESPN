@@ -1,6 +1,6 @@
 ## PILLAR-ESPN
 This repo includes the implementation code for the paper:
-***Fast and Private Inference of Deep Neural Networks by Co-designing Activation Functions***
+***[Fast and Private Inference of Deep Neural Networks by Co-designing Activation Functions](https://arxiv.org/abs/2306.08538)***.
 
 ## The environment for both PILLAR and CrypTen-ESPN
 
